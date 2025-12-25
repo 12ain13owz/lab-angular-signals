@@ -1,0 +1,79 @@
+<p-toast></p-toast>
+
+<div class="mx-auto max-w-4xl">
+  <p-card>
+    <h1 class="mb-8 flex items-center gap-3 text-3xl font-bold text-blue-500">
+      <i class="pi pi-ticket text-2xl! text-blue-500"></i>
+      Ticket Booking Lab
+    </h1>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div class="flex flex-col gap-6">
+        <p-card header="Manage Quantity" class="border-t-4 border-blue-500">
+          <div class="flex flex-col items-center py-4">
+            <span class="mb-2 text-xs tracking-widest text-gray-400 uppercase">Tickets to buy</span>
+            <div class="flex items-center justify-center gap-6">
+              <p-button
+                icon="pi pi-minus"
+                [rounded]="true"
+                severity="help"
+                (onClick)="decrement()"
+              ></p-button>
+
+              <span class="w-32 text-center text-6xl font-black text-gray-500">
+                {{ count() }}
+              </span>
+
+              <p-button
+                icon="pi pi-plus"
+                [rounded]="true"
+                severity="primary"
+                (onClick)="increment()"
+              ></p-button>
+            </div>
+            <p-button
+              label="Reset Counter"
+              [text]="true"
+              severity="danger"
+              class="mt-6"
+              (onClick)="reset()"
+            ></p-button>
+          </div>
+        </p-card>
+
+        <div class="flex flex-col gap-3">
+          <label for="price" class="font-medium text-gray-400">Price per Ticket (฿)</label>
+          <p-inputNumber id="price" [(ngModel)]="price" mode="currency" currency="THB">
+          </p-inputNumber>
+
+          <span class="text-sm font-light text-gray-400 italic">
+            *Changing price won't trigger the "Limit Reached" alert thanks to untracked().
+          </span>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <p-card header="Order Summary">
+          <div class="flex flex-col py-6">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-400">Unit Price</span>
+              <span class="text-xl">฿{{ price() | number }}</span>
+            </div>
+            <p-divider></p-divider>
+
+            <div class="flex items-center justify-between">
+              <span class="text-gray-400">Quantity</span>
+              <span class="text-xl">{{ count() }} Seats</span>
+            </div>
+            <p-divider></p-divider>
+
+            <div class="md:mt-22">
+              <span class="mb-1 block text-gray-400">Total Payment</span>
+              <div class="text-5xl font-bold text-yellow-400">฿{{ totalPrice() | number }}</div>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </div>
+  </p-card>
+</div>

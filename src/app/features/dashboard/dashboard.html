@@ -1,0 +1,22 @@
+<p-toolbar class="m-4">
+  <div class="flex flex-1 justify-center gap-2">
+    @for (item of MENU_ITEMS; track $index) {
+      <a
+        pButton
+        #rla="routerLinkActive"
+        [routerLink]="item.route"
+        routerLinkActive
+        [label]="item.label"
+        [icon]="item.icon"
+        [text]="!rla.isActive"
+        [size]="'large'"
+        [severity]="rla.isActive ? 'primary' : 'secondary'"
+      >
+      </a>
+    }
+  </div>
+</p-toolbar>
+
+<main class="p-4">
+  <router-outlet></router-outlet>
+</main>
