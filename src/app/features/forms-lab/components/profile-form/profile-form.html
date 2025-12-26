@@ -1,152 +1,54 @@
-<div class="mx-auto max-w-3xl rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
-  <div class="mb-8 flex items-center gap-4">
-    <div class="rounded-lg bg-blue-50 p-3">
-      <i class="pi pi-user-edit text-2xl text-blue-600"></i>
-    </div>
-    <div>
-      <h2 class="text-2xl font-bold text-gray-800">Profile Settings</h2>
-      <p class="text-sm text-gray-500">Update your information and manage hobbies</p>
-    </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mt-2 flex flex-col gap-3">
+  <app-input-text-form
+    [control]="email"
+    [type]="'email'"
+    [label]="'Email'"
+    [errorMessage]="validationMessages.email"
+  ></app-input-text-form>
+
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <app-input-text-form
+      [control]="firstName"
+      [label]="'First Name'"
+      [errorMessage]="validationMessages.firstName"
+    ></app-input-text-form>
+
+    <app-input-text-form
+      [control]="lastName"
+      [label]="'Last Name'"
+      [errorMessage]="validationMessages.lastName"
+    ></app-input-text-form>
   </div>
 
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
-    <div
-      class="flex flex-col items-center gap-4 rounded-xl border border-dashed border-gray-200 bg-gray-50 p-6"
+  <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+    <app-input-phone-form
+      [control]="phone"
+      [label]="'Phone'"
+      [errorMessage]="validationMessages.phone"
+    ></app-input-phone-form>
+
+    <app-input-date-form
+      [control]="birthDay"
+      [label]="'Birthday'"
+      [errorMessage]="validationMessages.birthDay"
     >
-      <div class="relative">
-        <div
-          class="flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-white bg-blue-100 shadow-md"
-        >
-          @if (form.controls.avatar.value) {
-            <img [src]="form.controls.avatar.value" class="h-full w-full object-cover" />
-          } @else {
-            <i class="pi pi-user text-4xl text-blue-400"></i>
-          }
-        </div>
-        <button
-          type="button"
-          class="absolute right-0 bottom-0 rounded-full bg-blue-600 p-2 text-white shadow-lg transition-colors hover:bg-blue-700"
-        >
-          <i class="pi pi-camera text-xs"></i>
-        </button>
-      </div>
-      <span class="text-xs font-semibold tracking-wider text-gray-400 uppercase"
-        >Profile Picture</span
-      >
-    </div>
+    </app-input-date-form>
+  </div>
 
-    <div class="grid grid-cols-1 gap-x-6 gap-y-4 md:grid-cols-2">
-      <div class="flex flex-col gap-2">
-        <label for="firstName" class="text-sm font-semibold text-gray-700"
-          >First Name <span class="text-red-500">*</span></label
-        >
-        <input
-          pInputText
-          id="firstName"
-          formControlName="firstName"
-          placeholder="Enter first name"
-          [class.ng-invalid]="form.controls.firstName.invalid && form.controls.firstName.touched"
-          class="w-full"
-        />
-      </div>
+  <div class="flex justify-end gap-3">
+    <p-button
+      type="button"
+      [label]="'Cancel'"
+      variant="text"
+      severity="secondary"
+      (onClick)="onCancel()"
+    ></p-button>
 
-      <div class="flex flex-col gap-2">
-        <label for="lastName" class="text-sm font-semibold text-gray-700"
-          >Last Name <span class="text-red-500">*</span></label
-        >
-        <input
-          pInputText
-          id="lastName"
-          formControlName="lastName"
-          placeholder="Enter last name"
-          [class.ng-invalid]="form.controls.lastName.invalid && form.controls.lastName.touched"
-          class="w-full"
-        />
-      </div>
-
-      <div class="flex flex-col gap-2 md:col-span-2">
-        <label for="email" class="text-sm font-semibold text-gray-700"
-          >Email Address <span class="text-red-500">*</span></label
-        >
-        <div class="p-input-icon-left w-full">
-          <i class="pi pi-envelope"></i>
-          <input
-            pInputText
-            id="email"
-            formControlName="email"
-            placeholder="example@mail.com"
-            [class.ng-invalid]="form.controls.email.invalid && form.controls.email.touched"
-            class="w-full"
-          />
-        </div>
-        @if (form.controls.email.invalid && form.controls.email.touched) {
-          <small class="flex items-center gap-1 text-red-500">
-            <i class="pi pi-exclamation-circle text-xs"></i> Please enter a valid email.
-          </small>
-        }
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <label for="phone" class="text-sm font-semibold text-gray-700"
-          >Phone Number <span class="text-red-500">*</span></label
-        >
-        <input
-          pInputText
-          id="phone"
-          formControlName="phone"
-          placeholder="08X-XXX-XXXX"
-          [class.ng-invalid]="form.controls.phone.invalid && form.controls.phone.touched"
-          class="w-full"
-        />
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <label for="birthday" class="text-sm font-semibold text-gray-700"
-          >Birthday <span class="text-red-500">*</span></label
-        >
-        <p-calendar
-          id="birthday"
-          formControlName="birthday"
-          placeholder="Select date"
-          appendTo="body"
-          styleClass="w-full"
-          [class.ng-invalid]="form.controls.birthday.invalid && form.controls.birthday.touched"
-        >
-        </p-calendar>
-      </div>
-    </div>
-
-    <div class="flex flex-col gap-2 border-t border-gray-100 pt-4">
-      <label class="flex items-center gap-2 text-sm font-semibold text-gray-700">
-        <i class="pi pi-tags text-blue-500"></i> Hobbies
-      </label>
-      <p-chips
-        formControlName="hobbies"
-        placeholder="Type and press Enter..."
-        styleClass="w-full"
-        class="w-full"
-      >
-      </p-chips>
-      <small class="text-gray-400">Add things you love to do in your free time.</small>
-    </div>
-
-    <div class="flex items-center justify-end gap-3 border-t border-gray-100 pt-6">
-      <p-button
-        label="Cancel"
-        severity="secondary"
-        [outlined]="true"
-        (onClick)="onCancel()"
-        styleClass="px-6"
-      >
-      </p-button>
-      <p-button
-        label="Save Profile"
-        icon="pi pi-check"
-        [disabled]="form.invalid"
-        type="submit"
-        styleClass="px-6"
-      >
-      </p-button>
-    </div>
-  </form>
-</div>
+    <p-button
+      type="submit"
+      [label]="'Submit'"
+      [loading]="isLoading()"
+      [disabled]="form.invalid"
+    ></p-button>
+  </div>
+</form>

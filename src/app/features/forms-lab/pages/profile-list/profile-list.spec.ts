@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { FormsLab } from './forms-lab'
+import { ProfileList } from './profile-list'
 
-describe('FormsLab', () => {
-  let component: FormsLab
-  let fixture: ComponentFixture<FormsLab>
+describe('ProfileList', () => {
+  let component: ProfileList
+  let fixture: ComponentFixture<ProfileList>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsLab],
+      imports: [ProfileList],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(FormsLab)
+    fixture = TestBed.createComponent(ProfileList)
     component = fixture.componentInstance
     await fixture.whenStable()
   })

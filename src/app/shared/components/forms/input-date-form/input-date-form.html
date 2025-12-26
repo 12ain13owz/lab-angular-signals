@@ -1,0 +1,25 @@
+<div class="flex flex-col gap-1">
+  <p-floatlabel variant="on">
+    <p-date-picker
+      [formControl]="control()"
+      [id]="id()"
+      [readonlyInput]="readonly()"
+      [invalid]="control().invalid && control().touched"
+      [showIcon]="true"
+      [min]="min()"
+      [max]="max()"
+      [minlength]="minlength()"
+      [maxlength]="maxlength()"
+      [size]="size()"
+      [variant]="variant()"
+      appendTo="body"
+      class="w-full"
+      inputStyleClass="w-full"
+    ></p-date-picker>
+    <label [for]="id()">{{ label() }}</label>
+  </p-floatlabel>
+
+  <p-message severity="error" size="small" variant="simple">
+    <app-error-field [control]="control()" [errorMessage]="errorMessage()"></app-error-field>
+  </p-message>
+</div>

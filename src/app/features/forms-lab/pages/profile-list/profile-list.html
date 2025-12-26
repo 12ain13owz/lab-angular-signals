@@ -1,0 +1,38 @@
+<p-card>
+  <p-table [value]="profiles()" [paginator]="true" [rows]="10">
+    <ng-template #header>
+      <tr>
+        <th>Email</th>
+        <th>Full Name</th>
+        <th>Birthday</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-profile>
+      <tr>
+        <td>{{ profile.email }}</td>
+        <td>{{ getFullName(profile) }}</td>
+        <td>{{ profile.birthDay | date: 'dd/MM/yyyy' }}</td>
+        <td>{{ profile.phone }}</td>
+        <td class="flex items-center">
+          <p-button
+            icon="pi pi-user-edit"
+            severity="info"
+            [rounded]="true"
+            [text]="true"
+            (onClick)="onUpdate(profile)"
+          />
+          <p-divider layout="vertical" />
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            [rounded]="true"
+            [text]="true"
+            (onClick)="onDelete(profile)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

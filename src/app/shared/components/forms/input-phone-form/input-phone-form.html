@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-1">
+  <p-floatlabel variant="on">
+    <p-inputMask
+      [formControl]="control()"
+      [mask]="mask()"
+      [id]="id()"
+      [readonly]="readonly()"
+      [invalid]="control().invalid && control().touched"
+      [size]="size()"
+      [variant]="variant()"
+      styleClass="w-full"
+    ></p-inputMask>
+    <label [for]="id()">{{ label() }}</label>
+  </p-floatlabel>
+
+  <p-message severity="error" size="small" variant="simple">
+    <app-error-field [control]="control()" [errorMessage]="errorMessage()"></app-error-field>
+  </p-message>
+</div>

@@ -1,0 +1,44 @@
+<footer class="border-t border-gray-500">
+  <div class="mx-auto max-w-4xl px-4 py-2 lg:px-0">
+    <div class="flex flex-col items-center gap-3 md:flex-row md:justify-between">
+      <!-- Project Info -->
+      <div class="text-center text-gray-300 md:text-left">
+        <h3 class="font-semibold">lab-angular-signals</h3>
+        <p class="text-sm">Exploring Angular Signals & Modern Patterns</p>
+      </div>
+
+      <!-- Links -->
+      <div class="flex items-center">
+        <a
+          pButton
+          label="GitHub"
+          icon="pi pi-github"
+          [text]="true"
+          severity="secondary"
+          href="https://github.com"
+          target="_blank"
+        >
+        </a>
+
+        <p-divider layout="vertical" class="hidden md:block"></p-divider>
+
+        <a
+          pButton
+          label="Angular Docs"
+          icon="pi pi-github"
+          [text]="true"
+          severity="secondary"
+          href="https://angular.dev"
+          target="_blank"
+        >
+        </a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="text-center text-sm text-gray-300 md:text-right">
+        <p>© {{ currentYear }} Side Project</p>
+        <p class="text-xs">Built with Angular & PrimeNG</p>
+      </div>
+    </div>
+  </div>
+</footer>

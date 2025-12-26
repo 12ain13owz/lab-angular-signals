@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { FormsLab } from './forms-lab'
+import { ErrorField } from './error-field'
 
-describe('FormsLab', () => {
-  let component: FormsLab
-  let fixture: ComponentFixture<FormsLab>
+describe('ErrorField', () => {
+  let component: ErrorField
+  let fixture: ComponentFixture<ErrorField>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsLab],
+      imports: [ErrorField],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(FormsLab)
+    fixture = TestBed.createComponent(ErrorField)
     component = fixture.componentInstance
     await fixture.whenStable()
   })

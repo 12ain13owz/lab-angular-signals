@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { FormsLab } from './forms-lab'
+import { InputNumberForm } from './input-number-form'
 
-describe('FormsLab', () => {
-  let component: FormsLab
-  let fixture: ComponentFixture<FormsLab>
+describe('InputNumberForm', () => {
+  let component: InputNumberForm
+  let fixture: ComponentFixture<InputNumberForm>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsLab],
+      imports: [InputNumberForm],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(FormsLab)
+    fixture = TestBed.createComponent(InputNumberForm)
     component = fixture.componentInstance
     await fixture.whenStable()
   })

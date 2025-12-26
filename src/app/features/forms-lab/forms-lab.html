@@ -1,1 +1,39 @@
-<app-profile-form></app-profile-form>
+<p-toast />
+<p-confirmdialog />
+
+<div class="mx-auto flex max-w-4xl flex-col gap-4">
+  <div class="flex items-center gap-4">
+    <p-button
+      icon="pi pi-plus"
+      [rounded]="true"
+      [size]="'large'"
+      [severity]="'info'"
+      (onClick)="openDialog()"
+    ></p-button>
+
+    <h3 class="text-3xl font-bold text-blue-500">Profile Lab</h3>
+  </div>
+
+  <app-profile-list
+    (updated)="openDialog($event)"
+    (deleted)="onConfirmDelete($event)"
+  ></app-profile-list>
+</div>
+
+<p-dialog
+  header="Create Profile"
+  [modal]="true"
+  [draggable]="false"
+  [visible]="isDialogVisible()"
+  (onHide)="closeDialog()"
+  styleClass="max-w-4xl w-full mx-4"
+>
+  @if (isDialogVisible()) {
+    <app-profile-form
+      [profile]="profile"
+      [isLoading]="isLoading"
+      (submitted)="profile ? onUpdateProfile($event) : onCreateProfile($event)"
+      (cancelled)="closeDialog()"
+    ></app-profile-form>
+  }
+</p-dialog>

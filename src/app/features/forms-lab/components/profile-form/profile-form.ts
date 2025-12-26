@@ -4,22 +4,60 @@ import { toObservable } from '@angular/core/rxjs-interop'
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ButtonModule } from 'primeng/button'
 
-import { Profile, ProfileFormControl, ProfileFormValue } from '../../../../core/models/profile'
+import { validationMessages } from '../../../../core/const/validation-const'
+import {
+  Profile,
+  ProfileFormControl,
+  ProfileFormValue,
+} from '../../../../core/models/profile-model'
+import { InputDateForm } from '../../../../shared/components/forms/input-date-form/input-date-form'
+import { InputPhoneForm } from '../../../../shared/components/forms/input-phone-form/input-phone-form'
+import { InputTextForm } from '../../../../shared/components/forms/input-text-form/input-text-form'
 
 @Component({
   selector: 'app-profile-form',
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    InputTextForm,
+    InputPhoneForm,
+    InputDateForm,
+  ],
   templateUrl: './profile-form.html',
   styleUrl: './profile-form.scss',
 })
 export class ProfileForm {
   profile = input<Profile | null>(null)
+  isLoading = input<boolean>(false)
+
   $profile = toObservable(this.profile)
 
   submitted = output<ProfileFormValue>()
   cancelled = output<void>()
 
   form = this.initializeForm()
+  validationMessages = validationMessages
+
+  get email(): FormControl<string> {
+    return this.form.controls.email
+  }
+
+  get firstName(): FormControl<string> {
+    return this.form.controls.firstName
+  }
+
+  get lastName(): FormControl<string> {
+    return this.form.controls.lastName
+  }
+
+  get birthDay(): FormControl<Date | null> {
+    return this.form.controls.birthDay
+  }
+
+  get phone(): FormControl<string> {
+    return this.form.controls.phone
+  }
 
   constructor() {
     // 1. (Signals effect): ใช้ effect เพื่อ patchValue เมื่อ profile มีค่า แล้ว destroy ทันที
@@ -61,7 +99,6 @@ export class ProfileForm {
 
   private initializeForm(): FormGroup<ProfileFormControl> {
     return new FormGroup<ProfileFormControl>({
-      avatar: new FormControl(''),
       email: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required, Validators.email],
@@ -74,16 +111,13 @@ export class ProfileForm {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      birthday: new FormControl<Date | null>(null, {
+      birthDay: new FormControl<Date | null>(null, {
         nonNullable: true,
         validators: [Validators.required],
       }),
       phone: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required],
-      }),
-      hobbies: new FormControl<string[]>([], {
-        nonNullable: true,
       }),
     })
   }

@@ -1,19 +1,17 @@
-import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { RouterModule } from '@angular/router'
 import { ButtonModule } from 'primeng/button'
-import { CardModule } from 'primeng/card'
-import { Toolbar } from 'primeng/toolbar'
+import { ToolbarModule } from 'primeng/toolbar'
 
-import { MenuItem } from '../../core/models/dashboard'
+import { MenuItem } from '../../../../core/models/dashboard-model'
 
 @Component({
-  selector: 'app-dashboard',
-  imports: [CommonModule, RouterModule, CardModule, Toolbar, ButtonModule],
-  templateUrl: './dashboard.html',
-  styleUrl: './dashboard.scss',
+  selector: 'app-toolbar',
+  imports: [RouterModule, ToolbarModule, ButtonModule],
+  templateUrl: './toolbar.html',
+  styleUrl: './toolbar.scss',
 })
-export class Dashboard {
+export class Toolbar {
   MENU_ITEMS: MenuItem[] = [
     { label: 'Counters', icon: 'pi pi-plus-circle', route: '/counters' },
     { label: 'Forms Lab', icon: 'pi pi-list', route: '/forms' },

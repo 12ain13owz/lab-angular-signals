@@ -3,7 +3,7 @@ import { Routes } from '@angular/router'
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+    loadComponent: () => import('./layouts/dashboard/dashboard').then((m) => m.Dashboard),
     children: [
       { path: '', redirectTo: 'counters', pathMatch: 'full' },
       {

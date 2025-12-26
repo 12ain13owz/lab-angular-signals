@@ -1,0 +1,26 @@
+<div class="flex flex-col gap-1">
+  <p-floatlabel variant="on">
+    <p-input-number
+      [formControl]="control()"
+      [id]="id()"
+      [readonly]="readonly()"
+      [invalid]="control().invalid && control().touched"
+      [mode]="mode()"
+      [min]="min()"
+      [max]="max()"
+      [minlength]="minlength()"
+      [maxlength]="maxlength()"
+      [currency]="currency()"
+      [minFractionDigits]="minFractionDigits()"
+      [maxFractionDigits]="maxFractionDigits()"
+      [size]="size()"
+      [variant]="variant()"
+      class="w-full"
+    ></p-input-number>
+    <label [for]="id()">{{ label() }}</label>
+  </p-floatlabel>
+
+  <p-message severity="error" size="small" variant="simple">
+    <app-error-field [control]="control()" [errorMessage]="errorMessage()"></app-error-field>
+  </p-message>
+</div>
