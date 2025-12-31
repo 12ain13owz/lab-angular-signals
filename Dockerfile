@@ -1,5 +1,5 @@
 # Use Node.js as base image
-FROM node:24-alpine AS build
+FROM node:24.12.0-alpine AS build
 
 # Set working directory
 WORKDIR /app
@@ -26,7 +26,8 @@ COPY --from=build /app/dist/lab-angular-signals/browser /usr/share/nginx/html
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
-EXPOSE 4200
+EXPOSE 80
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
+

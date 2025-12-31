@@ -1,0 +1,10 @@
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lab-angular-signals-img
+    container_name: lab-angular-signals-app
+    ports:
+      - "4200:80"
+    restart: unless-stopped
